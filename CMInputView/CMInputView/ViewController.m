@@ -36,7 +36,38 @@
     
     _inputView.maxNumberOfLines = 4;
     [self.view addSubview:_inputView];
+    
+    
+   
+
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+   
+//    self.inputView.text = @"啦啦啦啦啦";
+//    self.inputView.textColor = [UIColor blackColor];
+   
+    
+    self.inputView.text = @"啦啦啦啦";
+    
+    self.inputView.text = nil;
+    
+}
+
+
+-(void)dismissInput {
+    sleep(3);
+
+    self.inputView.text = nil;
+    [self.inputView resignFirstResponder];
+//    [self changeSelectState];
+    [UIView animateWithDuration:.3 animations:^{
+//        self.backView.alpha = 0;
+//        [self removeFromSuperview];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

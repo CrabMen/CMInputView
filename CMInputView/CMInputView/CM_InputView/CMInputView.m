@@ -34,6 +34,7 @@
     _textChangedBlock = block;
 
 }
+
 - (UITextView *)placeholderView
 {
     if (!_placeholderView ) {
@@ -103,12 +104,12 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        [self setup];
+        [self initSubViews];
     }
     return self;
 }
 
-- (void)setup
+- (void)initSubViews
 {
     
     self.scrollEnabled = NO;
@@ -117,12 +118,27 @@
     self.enablesReturnKeyAutomatically = YES;
     self.layer.borderWidth = 1;
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
     //实时监听textView值得改变
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
+    
+    //设置监听，监听对text的赋值操作情况的处理
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(text)) options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+
+    
 }
 
-- (void)textDidChange
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(text))]) {
+        // 根据文字内容决定placeholderView是否隐藏
+        self.placeholderView.hidden = self.text.length > 0;
+        
+    }
+}
+
+
+- (void)textDidChange{
     // 根据文字内容决定placeholderView是否隐藏
     self.placeholderView.hidden = self.text.length > 0;
     
@@ -150,6 +166,8 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(text))];
 }
 
 @end

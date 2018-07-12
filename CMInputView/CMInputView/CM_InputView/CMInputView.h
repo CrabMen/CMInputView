@@ -38,7 +38,7 @@ typedef void(^CM_textHeightChangedBlock)(NSString *text,CGFloat textHeight);
  *  block参数(text) → 文字内容
  *  block参数(textHeight) → 文字高度
  */
-@property (nonatomic, strong) CM_textHeightChangedBlock textChangedBlock;
+@property (nonatomic, copy) CM_textHeightChangedBlock textChangedBlock;
 /**
  *  设置圆角
  */
