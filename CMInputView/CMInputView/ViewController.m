@@ -56,17 +56,7 @@
 }
 
 
--(void)dismissInput {
-    sleep(3);
 
-    self.inputView.text = nil;
-    [self.inputView resignFirstResponder];
-//    [self changeSelectState];
-    [UIView animateWithDuration:.3 animations:^{
-//        self.backView.alpha = 0;
-//        [self removeFromSuperview];
-    }];
-}
 
 
 - (void)didReceiveMemoryWarning {
