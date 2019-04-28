@@ -167,18 +167,34 @@
 }
 
 
-- (void)fontValueChanged {
+- (void)updateHight {
     
-//    CGFloat height =  ceil(self.font.lineHeight * cm_maxNumberOfLines +  self.textContainerInset.top + self.textContainerInset.bottom);
-//
-//    objc_setAssociatedObject(self, @selector(maxHeight), @(cm_maxNumberOfLines), OBJC_ASSOCIATION_ASSIGN);
-//
+    CGFloat maxHeight =  ceil(self.font.lineHeight * self.cm_maxNumberOfLines +  self.textContainerInset.top + self.textContainerInset.bottom);
+
+
+    NSInteger height = ceilf([self sizeThatFits:CGSizeMake(self.bounds.size.width, MAXFLOAT)].height);
+    
+    
+    if (maxHeight != height) {
+        // 当高度大于最大高度时，需要滚动
+        self.scrollEnabled = height > maxHeight && maxHeight > 0;
+        
+        CGRect newFrame = self.frame;
+        
+        newFrame.size.height = height;
+        
+        self.frame = newFrame;
+        
+    }
+    
     
 }
 
 
 - (void)textViewValueChanged {
 
+    
+    
        self.placeHolderTextView.hidden = self.text.length;
     
     if(!self.text.length) {
@@ -195,6 +211,8 @@
         self.placeHolderTextView.textAlignment = self.textAlignment;
         self.placeHolderTextView.frame = self.bounds;
     
+        
+        [self updateHight];
     }
     
 }
@@ -205,6 +223,8 @@
                        context:(void *)context {
 
     [self textViewValueChanged];
+    
+  
 }
 
 
