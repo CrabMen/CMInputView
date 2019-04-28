@@ -9,6 +9,9 @@
 #import "ViewController.h"
 
 #import "CM_InputView/CMInputView.h"
+
+#import "UITextView+CMInputView.h"
+
 @interface ViewController ()
 @property (nonatomic,strong) CMInputView *inputView;
 
@@ -22,19 +25,24 @@
     _inputView = [[CMInputView alloc]initWithFrame:CGRectMake(100, 100, 300, 40)];
 
     _inputView.font = [UIFont systemFontOfSize:18];
-    _inputView.placeholder = @"CrabMan的测试文字";
+    
+    _inputView.layer.borderWidth = 1;
+    _inputView.layer.borderColor = [UIColor blueColor].CGColor;
 
-    _inputView.cornerRadius = 4;
-    _inputView.placeholderColor = [UIColor redColor];
-    //_inputView.placeholderFont = [UIFont systemFontOfSize:22];
-    // 设置文本框最大行数
-    [_inputView textValueDidChanged:^(NSString *text, CGFloat textHeight) {
-        CGRect frame = _inputView.frame;
-        frame.size.height = textHeight;
-        _inputView.frame = frame;
+//    _inputView.backgroundColor = [UIColor lightGrayColor];
+
+//    _inputView.placeholder = @"测试问题";
+    
+//    _inputView.placeholderColor = [UIColor redColor];
+    
+    [_inputView setTextChangedBlock:^(NSString *text, CGFloat textHeight) {
+        
+        NSLog(@"当前内容为:%@,当前高度：%lf",text,textHeight);
     }];
     
-    _inputView.maxNumberOfLines = 4;
+    _inputView.cm_placeholder =  @"测试h占位符";
+    _inputView.cm_placeholderColor = [UIColor redColor];
+    
     [self.view addSubview:_inputView];
     
     

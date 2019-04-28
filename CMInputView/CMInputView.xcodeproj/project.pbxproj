@@ -16,6 +16,7 @@
 		2332AAD21D82FE72003E6ACB /* CMInputViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AAD11D82FE72003E6ACB /* CMInputViewTests.m */; };
 		2332AADD1D82FE72003E6ACB /* CMInputViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AADC1D82FE72003E6ACB /* CMInputViewUITests.m */; };
 		2332AAF51D8315B9003E6ACB /* CMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AAF41D8315B9003E6ACB /* CMInputView.m */; };
+		B5A8BF89227546C900776E4E /* UITextView+CMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8BF88227546C900776E4E /* UITextView+CMInputView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		2332AADE1D82FE72003E6ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2332AAF31D8315B9003E6ACB /* CMInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMInputView.h; sourceTree = "<group>"; };
 		2332AAF41D8315B9003E6ACB /* CMInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMInputView.m; sourceTree = "<group>"; };
+		B5A8BF87227546C900776E4E /* UITextView+CMInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+CMInputView.h"; sourceTree = "<group>"; };
+		B5A8BF88227546C900776E4E /* UITextView+CMInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CMInputView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,7 @@
 		2332AAB61D82FE72003E6ACB /* CMInputView */ = {
 			isa = PBXGroup;
 			children = (
+				B5A8BF862275469C00776E4E /* Class */,
 				2332AAF21D8315B9003E6ACB /* CM_InputView */,
 				2332AABA1D82FE72003E6ACB /* AppDelegate.h */,
 				2332AABB1D82FE72003E6ACB /* AppDelegate.m */,
@@ -151,6 +155,15 @@
 				2332AAF41D8315B9003E6ACB /* CMInputView.m */,
 			);
 			path = CM_InputView;
+			sourceTree = "<group>";
+		};
+		B5A8BF862275469C00776E4E /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				B5A8BF87227546C900776E4E /* UITextView+CMInputView.h */,
+				B5A8BF88227546C900776E4E /* UITextView+CMInputView.m */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +233,7 @@
 				TargetAttributes = {
 					2332AAB31D82FE72003E6ACB = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = HBW48U6989;
+						DevelopmentTeam = 4AA8299DA4;
 						ProvisioningStyle = Automatic;
 					};
 					2332AACC1D82FE72003E6ACB = {
@@ -240,6 +253,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -287,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A8BF89227546C900776E4E /* UITextView+CMInputView.m in Sources */,
 				2332AABF1D82FE72003E6ACB /* ViewController.m in Sources */,
 				2332AABC1D82FE72003E6ACB /* AppDelegate.m in Sources */,
 				2332AAB91D82FE72003E6ACB /* main.m in Sources */,
@@ -433,10 +448,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HBW48U6989;
+				DEVELOPMENT_TEAM = 4AA8299DA4;
 				INFOPLIST_FILE = CMInputView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CrabMan.CMInputView;
+				PRODUCT_BUNDLE_IDENTIFIER = CrabMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -448,10 +463,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HBW48U6989;
+				DEVELOPMENT_TEAM = 4AA8299DA4;
 				INFOPLIST_FILE = CMInputView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CrabMan.CMInputView;
+				PRODUCT_BUNDLE_IDENTIFIER = CrabMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
