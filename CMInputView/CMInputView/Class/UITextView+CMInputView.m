@@ -175,10 +175,13 @@ method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFro
     
     CGFloat maxHeight =  ceil(self.font.lineHeight * self.cm_maxNumberOfLines +  self.textContainerInset.top + self.textContainerInset.bottom);
     NSInteger height = self.text.length ? ceil([self sizeThatFits:CGSizeMake(self.frame.size.width, MAXFLOAT)].height) : self.originalHeight;
+    
+    height = height <= self.originalHeight ? self.originalHeight : height;
+    
 
     self.scrollEnabled = !self.cm_autoLineBreak;
 
-    if (self.cm_autoLineBreak && !self.cm_maxNumberOfLines && height > self.originalHeight) {
+    if (self.cm_autoLineBreak && !self.cm_maxNumberOfLines && height >= self.originalHeight) {
         CGRect newFrame = self.frame;
         
         newFrame.size.height = height;
@@ -186,8 +189,11 @@ method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFro
         self.frame = newFrame;
 
     }
-    
+
     self.scrollEnabled = height > maxHeight && self.cm_maxNumberOfLines;
+    
+    NSLog(@"当前的原始高度:%f",self.originalHeight);
+    
     if (maxHeight >= height && height >= self.originalHeight) {
 
         CGRect newFrame = self.frame;
@@ -197,7 +203,7 @@ method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFro
         self.frame = newFrame;
 
     }
-
+    
 }
 
 
