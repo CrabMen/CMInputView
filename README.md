@@ -7,6 +7,8 @@
 ![](https://img.shields.io/cocoapods/p/UITextView+CMInputView.svg)
 ![](https://img.shields.io/apm/l/vim-mode.svg)
 
+### Because the original use of inheritance, too intrusive, so now use Category to reconstruct the code, and released version 0.1.0。
+
 # Table of contents
 * [Screenshots](#screenshots)
 * [Installation](#installation)
