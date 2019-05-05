@@ -13,9 +13,6 @@
 		2332AAC21D82FE72003E6ACB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332AAC01D82FE72003E6ACB /* Main.storyboard */; };
 		2332AAC41D82FE72003E6ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332AAC31D82FE72003E6ACB /* Assets.xcassets */; };
 		2332AAC71D82FE72003E6ACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332AAC51D82FE72003E6ACB /* LaunchScreen.storyboard */; };
-		2332AAD21D82FE72003E6ACB /* CMInputViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AAD11D82FE72003E6ACB /* CMInputViewTests.m */; };
-		2332AADD1D82FE72003E6ACB /* CMInputViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AADC1D82FE72003E6ACB /* CMInputViewUITests.m */; };
-		2332AAF51D8315B9003E6ACB /* CMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2332AAF41D8315B9003E6ACB /* CMInputView.m */; };
 		B5A8BF89227546C900776E4E /* UITextView+CMInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8BF88227546C900776E4E /* UITextView+CMInputView.m */; };
 /* End PBXBuildFile section */
 
@@ -48,13 +45,7 @@
 		2332AAC61D82FE72003E6ACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2332AAC81D82FE72003E6ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2332AACD1D82FE72003E6ACB /* CMInputViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CMInputViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2332AAD11D82FE72003E6ACB /* CMInputViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMInputViewTests.m; sourceTree = "<group>"; };
-		2332AAD31D82FE72003E6ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2332AAD81D82FE72003E6ACB /* CMInputViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CMInputViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2332AADC1D82FE72003E6ACB /* CMInputViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMInputViewUITests.m; sourceTree = "<group>"; };
-		2332AADE1D82FE72003E6ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2332AAF31D8315B9003E6ACB /* CMInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMInputView.h; sourceTree = "<group>"; };
-		2332AAF41D8315B9003E6ACB /* CMInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMInputView.m; sourceTree = "<group>"; };
 		B5A8BF87227546C900776E4E /* UITextView+CMInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+CMInputView.h"; sourceTree = "<group>"; };
 		B5A8BF88227546C900776E4E /* UITextView+CMInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CMInputView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				2332AAB61D82FE72003E6ACB /* CMInputView */,
-				2332AAD01D82FE72003E6ACB /* CMInputViewTests */,
-				2332AADB1D82FE72003E6ACB /* CMInputViewUITests */,
 				2332AAB51D82FE72003E6ACB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				B5A8BF862275469C00776E4E /* Class */,
-				2332AAF21D8315B9003E6ACB /* CM_InputView */,
 				2332AABA1D82FE72003E6ACB /* AppDelegate.h */,
 				2332AABB1D82FE72003E6ACB /* AppDelegate.m */,
 				2332AABD1D82FE72003E6ACB /* ViewController.h */,
@@ -128,33 +116,6 @@
 				2332AAB81D82FE72003E6ACB /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2332AAD01D82FE72003E6ACB /* CMInputViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				2332AAD11D82FE72003E6ACB /* CMInputViewTests.m */,
-				2332AAD31D82FE72003E6ACB /* Info.plist */,
-			);
-			path = CMInputViewTests;
-			sourceTree = "<group>";
-		};
-		2332AADB1D82FE72003E6ACB /* CMInputViewUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2332AADC1D82FE72003E6ACB /* CMInputViewUITests.m */,
-				2332AADE1D82FE72003E6ACB /* Info.plist */,
-			);
-			path = CMInputViewUITests;
-			sourceTree = "<group>";
-		};
-		2332AAF21D8315B9003E6ACB /* CM_InputView */ = {
-			isa = PBXGroup;
-			children = (
-				2332AAF31D8315B9003E6ACB /* CMInputView.h */,
-				2332AAF41D8315B9003E6ACB /* CMInputView.m */,
-			);
-			path = CM_InputView;
 			sourceTree = "<group>";
 		};
 		B5A8BF862275469C00776E4E /* Class */ = {
@@ -190,6 +151,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2332AAE41D82FE72003E6ACB /* Build configuration list for PBXNativeTarget "CMInputViewTests" */;
 			buildPhases = (
+				A89544CC49B6F9DD997BD7CE /* [CP] Check Pods Manifest.lock */,
 				2332AAC91D82FE72003E6ACB /* Sources */,
 				2332AACA1D82FE72003E6ACB /* Frameworks */,
 				2332AACB1D82FE72003E6ACB /* Resources */,
@@ -208,6 +170,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2332AAE71D82FE72003E6ACB /* Build configuration list for PBXNativeTarget "CMInputViewUITests" */;
 			buildPhases = (
+				358B2457631A5C1AB1C58962 /* [CP] Check Pods Manifest.lock */,
 				2332AAD41D82FE72003E6ACB /* Sources */,
 				2332AAD51D82FE72003E6ACB /* Frameworks */,
 				2332AAD61D82FE72003E6ACB /* Resources */,
@@ -228,7 +191,7 @@
 		2332AAAC1D82FE72003E6ACB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = CrabMan;
 				TargetAttributes = {
 					2332AAB31D82FE72003E6ACB = {
@@ -296,6 +259,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		358B2457631A5C1AB1C58962 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CMInputViewUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A89544CC49B6F9DD997BD7CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CMInputViewTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2332AAB01D82FE72003E6ACB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -305,7 +315,6 @@
 				2332AABF1D82FE72003E6ACB /* ViewController.m in Sources */,
 				2332AABC1D82FE72003E6ACB /* AppDelegate.m in Sources */,
 				2332AAB91D82FE72003E6ACB /* main.m in Sources */,
-				2332AAF51D8315B9003E6ACB /* CMInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +322,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2332AAD21D82FE72003E6ACB /* CMInputViewTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +329,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2332AADD1D82FE72003E6ACB /* CMInputViewUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,18 +371,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -408,18 +426,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -2,7 +2,7 @@
 //  UITextView+CMInputView.m
 //  CMInputView
 //
-//  Created by 智借iOS on 2019/4/28.
+//  Created by CrabMan on 2019/4/28.
 //  Copyright © 2019 CrabMan. All rights reserved.
 //
 
@@ -22,15 +22,34 @@
 
 @implementation UITextView (CMInputView)
 
++ (void)load {
+    [super load];
+method_exchangeImplementations(class_getInstanceMethod(self.class, NSSelectorFromString(@"dealloc")),class_getInstanceMethod(self.class,@selector(exchanged_dealloc)));
+    
+}
+
+
+- (void)exchanged_dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    UITextView *textView = objc_getAssociatedObject(self, @selector(placeHolderTextView));
+    if (textView) {
+        for (NSString *key in self.class.observedKeys) {
+            @try {
+                [self removeObserver:self forKeyPath:key];
+            }
+            @catch (NSException *exception) {
+    
+            }
+        }
+    }
+    [self exchanged_dealloc];
+    
+}
+
+
 + (NSArray *)observedKeys {
-    return @[@"attributedText",
-             @"bounds",
-             @"font",
-             @"frame",
-             @"text",
-             @"textAlignment",
-             @"textContainerInset",
-             @"textContainer.exclusionPaths"];
+    return @[@"attributedText",@"bounds",@"font",@"frame",@"text",@"textAlignment",@"textContainerInset",@"textContainer.exclusionPaths"];
 }
 
 - (CGFloat)originalHeight {
@@ -39,6 +58,8 @@
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
+        [self.superview layoutIfNeeded];
         originalHeight = self.bounds.size.height;
     });
 
@@ -58,19 +79,6 @@
     objc_setAssociatedObject(self, @selector(cm_placeholder), cm_placeholder, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     [self placeHolderTextView];
-    
-}
-
-- (NSAttributedString *)cm_attributedPlaceholder {
-    
-  return objc_getAssociatedObject(self, @selector(cm_attributedPlaceholder));
-    
-    
-}
-
-- (void)setCm_attributedPlaceholder:(NSAttributedString *)cm_attributedPlaceholder {
-    
-     objc_setAssociatedObject(self, @selector(cm_attributedPlaceholder), cm_attributedPlaceholder, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
 }
 
@@ -114,9 +122,21 @@
 - (void)setCm_maxNumberOfLines:(NSUInteger)cm_maxNumberOfLines {
     
      objc_setAssociatedObject(self, @selector(cm_maxNumberOfLines), @(cm_maxNumberOfLines), OBJC_ASSOCIATION_ASSIGN);
-    
     [self textViewValueChanged];
 
+}
+
+- (BOOL)cm_autoLineBreak {
+    
+     return [objc_getAssociatedObject(self, @selector(cm_autoLineBreak)) boolValue];
+    
+}
+
+- (void)setCm_autoLineBreak:(BOOL)cm_autoLineBreak {
+    
+     objc_setAssociatedObject(self, @selector(cm_autoLineBreak), @(cm_autoLineBreak), OBJC_ASSOCIATION_ASSIGN);
+    [self textViewValueChanged];
+    
 }
 
 - (UITextView *)placeHolderTextView {
@@ -130,7 +150,6 @@
         placeHolderTextView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
         objc_setAssociatedObject(self, @selector(placeHolderTextView), placeHolderTextView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-        
         [self insertSubview:placeHolderTextView atIndex:0];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewValueChanged) name:UITextViewTextDidChangeNotification object:self];
@@ -153,23 +172,30 @@
 - (void)updateHight {
     
     self.placeHolderTextView.hidden = self.text.length;
-
+    
     CGFloat maxHeight =  ceil(self.font.lineHeight * self.cm_maxNumberOfLines +  self.textContainerInset.top + self.textContainerInset.bottom);
-
-
     NSInteger height = self.text.length ? ceil([self sizeThatFits:CGSizeMake(self.frame.size.width, MAXFLOAT)].height) : self.originalHeight;
 
-    self.scrollEnabled = height > maxHeight && maxHeight > 0;
+    self.scrollEnabled = !self.cm_autoLineBreak;
 
-    
-    if (maxHeight >= height && height >= self.originalHeight) {
-        
+    if (self.cm_autoLineBreak && !self.cm_maxNumberOfLines && height > self.originalHeight) {
         CGRect newFrame = self.frame;
         
         newFrame.size.height = height;
         
         self.frame = newFrame;
-        
+
+    }
+    
+    self.scrollEnabled = height > maxHeight && self.cm_maxNumberOfLines;
+    if (maxHeight >= height && height >= self.originalHeight) {
+
+        CGRect newFrame = self.frame;
+
+        newFrame.size.height = height;
+
+        self.frame = newFrame;
+
     }
 
 }
@@ -177,7 +203,6 @@
 
 - (void)textViewValueChanged {
 
-    
     
     self.placeHolderTextView.hidden = self.text.length;
     
@@ -188,9 +213,6 @@
         self.placeHolderTextView.textColor = self.cm_placeholderColor ?: [UIColor lightGrayColor];
         self.placeHolderTextView.font = self.cm_placeholderFont?:self.font;
     
-        if (self.cm_attributedPlaceholder.length) {
-            self.placeHolderTextView.attributedText = self.cm_attributedPlaceholder;
-        }
         self.placeHolderTextView.textContainer.exclusionPaths = self.textContainer.exclusionPaths;
         
         self.placeHolderTextView.textAlignment = self.textAlignment;
