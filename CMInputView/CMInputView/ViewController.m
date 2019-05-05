@@ -13,7 +13,7 @@
 #import "UITextView+CMInputView.h"
 
 @interface ViewController ()
-@property (nonatomic,strong) CMInputView *inputView;
+@property (nonatomic,strong) UITextView *inputView;
 
 @end
 
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    _inputView = [[CMInputView alloc]initWithFrame:CGRectMake(100, 100, 300, 40)];
+    _inputView = [[UITextView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 60)];
 
     _inputView.font = [UIFont systemFontOfSize:18];
     
@@ -35,14 +35,14 @@
     
 //    _inputView.placeholderColor = [UIColor redColor];
     
-    [_inputView setTextChangedBlock:^(NSString *text, CGFloat textHeight) {
-        
-        NSLog(@"当前内容为:%@,当前高度：%lf",text,textHeight);
-    }];
+//    [_inputView setTextChangedBlock:^(NSString *text, CGFloat textHeight) {
+//        
+//        NSLog(@"当前内容为:%@,当前高度：%lf",text,textHeight);
+//    }];
     
-    _inputView.cm_placeholder =  @"测试h占位符";
+    _inputView.cm_placeholder =  @"placeholder";
     _inputView.cm_placeholderColor = [UIColor redColor];
-    
+    _inputView.cm_maxNumberOfLines = 3;
     [self.view addSubview:_inputView];
     
     

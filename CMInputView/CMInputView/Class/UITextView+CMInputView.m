@@ -13,8 +13,8 @@
 
 @property (nonatomic,strong) UITextView *placeHolderTextView;
 
-/**最大高度*/
-@property (nonatomic,assign) CGFloat maxHeight;
+
+@property (nonatomic,assign) CGFloat originalHeight;
 
 
 
@@ -22,7 +22,7 @@
 
 @implementation UITextView (CMInputView)
 
-+ (NSArray *)observingKeys {
++ (NSArray *)observedKeys {
     return @[@"attributedText",
              @"bounds",
              @"font",
@@ -31,6 +31,19 @@
              @"textAlignment",
              @"textContainerInset",
              @"textContainer.exclusionPaths"];
+}
+
+- (CGFloat)originalHeight {
+    
+    static CGFloat originalHeight;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        originalHeight = self.bounds.size.height;
+    });
+
+    return originalHeight;
+    
 }
 
 - (NSString *)cm_placeholder {
@@ -72,7 +85,7 @@
 - (void)setCm_placeholderColor:(UIColor *)cm_placeholderColor {
     
     objc_setAssociatedObject(self, @selector(cm_placeholderColor), cm_placeholderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self placeHolderTextView];
+    [self textViewValueChanged];
 
 }
 
@@ -88,7 +101,7 @@
     
      objc_setAssociatedObject(self, @selector(cm_placeholderFont), cm_placeholderFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    [self placeHolderTextView];
+    [self textViewValueChanged];
 
 }
 
@@ -96,47 +109,15 @@
 - (NSUInteger)cm_maxNumberOfLines {
      return [objc_getAssociatedObject(self, @selector(cm_maxNumberOfLines)) integerValue];
     
-    
 }
 
 - (void)setCm_maxNumberOfLines:(NSUInteger)cm_maxNumberOfLines {
     
      objc_setAssociatedObject(self, @selector(cm_maxNumberOfLines), @(cm_maxNumberOfLines), OBJC_ASSOCIATION_ASSIGN);
     
-    [self placeHolderTextView];
+    [self textViewValueChanged];
 
 }
-
-- (CGFloat)maxHeight {
-    
-    return [objc_getAssociatedObject(self, @selector(maxHeight)) doubleValue];
-    
-}
-
-- (NSUInteger)cm_maxTextLength {
-    
-     return [objc_getAssociatedObject(self, @selector(cm_maxTextLength)) integerValue];
-}
-
-- (void)setCm_maxTextLength:(NSUInteger)cm_maxTextLength {
-    
-     objc_setAssociatedObject(self, @selector(cm_maxTextLength), @(cm_maxTextLength), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (BOOL)cm_autoLineBreak {
-     return [objc_getAssociatedObject(self, @selector(cm_autoLineBreak)) boolValue];
-    
-}
-
-- (void)setCm_autoLineBreak:(BOOL)cm_autoLineBreak {
-    
-     objc_setAssociatedObject(self, @selector(cm_autoLineBreak), @(cm_autoLineBreak), OBJC_ASSOCIATION_ASSIGN);
-    [self placeHolderTextView];
-
-}
-
-
-
 
 - (UITextView *)placeHolderTextView {
  
@@ -152,15 +133,17 @@
         
         [self insertSubview:placeHolderTextView atIndex:0];
         
-        [self textViewValueChanged];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewValueChanged) name:UITextViewTextDidChangeNotification object:self];
         
-        for (NSString *key in self.class.observingKeys) {
-            [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
+        for (NSString *key in self.class.observedKeys) {
+            [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
         }
+        
+        [self textViewValueChanged];
 
     }
+    
+    
     
     return placeHolderTextView;
     
@@ -169,15 +152,17 @@
 
 - (void)updateHight {
     
+    self.placeHolderTextView.hidden = self.text.length;
+
     CGFloat maxHeight =  ceil(self.font.lineHeight * self.cm_maxNumberOfLines +  self.textContainerInset.top + self.textContainerInset.bottom);
 
 
-    NSInteger height = ceilf([self sizeThatFits:CGSizeMake(self.bounds.size.width, MAXFLOAT)].height);
+    NSInteger height = self.text.length ? ceil([self sizeThatFits:CGSizeMake(self.frame.size.width, MAXFLOAT)].height) : self.originalHeight;
+
+    self.scrollEnabled = height > maxHeight && maxHeight > 0;
+
     
-    
-    if (maxHeight != height) {
-        // 当高度大于最大高度时，需要滚动
-        self.scrollEnabled = height > maxHeight && maxHeight > 0;
+    if (maxHeight >= height && height >= self.originalHeight) {
         
         CGRect newFrame = self.frame;
         
@@ -186,8 +171,7 @@
         self.frame = newFrame;
         
     }
-    
-    
+
 }
 
 
@@ -195,13 +179,14 @@
 
     
     
-       self.placeHolderTextView.hidden = self.text.length;
+    self.placeHolderTextView.hidden = self.text.length;
     
     if(!self.text.length) {
     
+        
         self.placeHolderTextView.text= self.cm_placeholder;
-    self.placeHolderTextView.textColor = self.cm_placeholderColor ?: [UIColor lightGrayColor];
-    self.placeHolderTextView.font = self.cm_placeholderFont?:self.font;
+        self.placeHolderTextView.textColor = self.cm_placeholderColor ?: [UIColor lightGrayColor];
+        self.placeHolderTextView.font = self.cm_placeholderFont?:self.font;
     
         if (self.cm_attributedPlaceholder.length) {
             self.placeHolderTextView.attributedText = self.cm_attributedPlaceholder;
@@ -211,20 +196,19 @@
         self.placeHolderTextView.textAlignment = self.textAlignment;
         self.placeHolderTextView.frame = self.bounds;
     
-        
-        [self updateHight];
     }
+    
+    [self updateHight];
     
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
 
-    [self textViewValueChanged];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+
+    if (object != self.placeHolderTextView && [keyPath isEqualToString:@"text"]) {
+        [self updateHight];
+    }
     
-  
 }
 
 

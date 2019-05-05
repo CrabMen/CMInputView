@@ -26,13 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSUInteger cm_maxNumberOfLines;
 
 
-@property (nonatomic,assign) NSUInteger cm_maxTextLength;
-
-
-@property (nonatomic,assign) BOOL cm_autoLineBreak;
-
-
-
 @end
 
 NS_ASSUME_NONNULL_END
