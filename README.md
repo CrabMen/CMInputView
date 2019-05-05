@@ -8,7 +8,7 @@
 ![](https://img.shields.io/apm/l/vim-mode.svg)
 
 ## DECLARATION：
-Because the original use of inheritance that is too intrusive,  now I use category to reconstruct the code, and released new version 。
+Because the original code use inheritance which is too intrusive,  now I use category to reconstruct the code, and released new version 。
 
 # Table of contents
 * [Screenshots](#screenshots)
