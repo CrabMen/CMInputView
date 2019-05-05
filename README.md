@@ -8,7 +8,9 @@
 * [Installation](#installation)
 * [Pre-knowledge](#pre-knowledge)
 * [Example](#example)
+* [Notes](#notes)
 * [Support](#support)
+
 
 
 ## <a id="screenshots"></a>Screenshots 
@@ -80,10 +82,16 @@ If you want to make the UITextView  break line automatically ,you can write like
 
 Congratulations! You're done. 🎉
 
+## <a id="notes"></a>Notes
+* The category do not support constrained layout,please use carefully !
+* Once you set  ``cm_maxNumberOfLines`` ,the effect also works,even if you set ``YES`` to ``cm_autoLineBreak``
+
 
 ## <a id="support"></a>Support this repo
 * [**★Star**](#) this repo 
 * If you find somes bugs or need some new functions,please issue me
+
+
 
 ## License
 "UITextView+CMInputView" is available under the MIT license. See the LICENSE file for more info.
