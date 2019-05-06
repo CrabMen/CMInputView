@@ -91,7 +91,7 @@ Congratulations! You're done. 🎉
 
 ## <a id="notes"></a>Notes
 * The category do not support constrained layout,please use carefully !
-* Once you set  ``cm_maxNumberOfLines`` ,the effect also works,even if you set ``YES`` to ``cm_autoLineBreak``
+* Once you set  ``cm_maxNumberOfLines`` ,the effect always works,even if you set ``YES`` to ``cm_autoLineBreak``
 
 
 ## <a id="support"></a>Support this repo
