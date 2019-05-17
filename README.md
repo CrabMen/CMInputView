@@ -61,7 +61,7 @@ Firstly, you need import the .h file.
 Then create UITextView and use this category  to configure .
 
 ```
-   UITextView * inputView = [[UITextView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 55)];
+    UITextView * inputView = [[UITextView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 55)];
     inputView.font = [UIFont systemFontOfSize:18];
     
     inputView.cm_placeholder =  @"UITextView+CMInputView";
@@ -75,7 +75,7 @@ If you want to make the UITextView  break line automatically ,you can write like
 
 
 ```
-     UITextView * inputView = [[UITextView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 55)];
+    UITextView * inputView = [[UITextView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 55)];
     inputView.font = [UIFont systemFontOfSize:18];
    
     inputView.cm_placeholder =  @"UITextView+CMInputView";
